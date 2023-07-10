@@ -1,3 +1,2 @@
 #!/bin/bash
-find . -type f -iname "*.gif" | sort -f > tmp.txt
-cat tmp.txt | rev | cut -d"." -f2- | rev
+find . -type f -name "*.gif" -print0 | xargs -0 -I{} bash -c 'file="{}"; echo "${file%.*}"' | sort -f
